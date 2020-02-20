@@ -10,7 +10,7 @@ HRSP采用微服务方式开发，开发技术栈是Spring Boot， Spring Cloud�
 
 # 基础组件
 
-core：核心业务代码模块
+common：通用代码模块
 
 # 微服务设计
 
@@ -24,9 +24,9 @@ order订单中心：员工缴纳的社保，公积金，商保，交税，薪资
 
 ## user 用户中心
 
-**使用框架：**原生Mybatis
+**使用框架：** 原生Mybatis
 
-**数据库：**hrsp_user
+**数据库：** hrsp_user
 
 **功能：**
 
@@ -38,9 +38,9 @@ RBAC
 
 ## product 产品中心
 
-**使用框架：**通用Mapper
+**使用框架：** 通用Mapper
 
-**数据库：**hrsp_product
+**数据库：** hrsp_product
 
 **功能：**
 
@@ -48,9 +48,9 @@ RBAC
 
 ## order 订单中心
 
-**使用框架：**Mybatis-Plus
+**使用框架：** Mybatis-Plus
 
-**数据库：**hrsp_order
+**数据库：** hrsp_order
 
 **功能：**
 
