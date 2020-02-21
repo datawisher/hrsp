@@ -1,5 +1,9 @@
 package cn.datawisher.common.util;
 
+import org.apache.commons.io.FilenameUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
@@ -11,6 +15,33 @@ import java.io.*;
  * @Version V1.0
  **/
 public class FileUtils {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileUtils.class);
+
+    /**
+     * 获取真实文件名（自动去掉文件路径）
+     */
+    public static String getRealFileName(String fileName) {
+        return FilenameUtils.getName(fileName);
+    }
+
+    /**
+     * 创建文件
+     */
+    public static File createFile(String filePath) {
+        File file;
+        try {
+            file = new File(filePath);
+            File parentDir = file.getParentFile();
+            if (!parentDir.exists()) {
+                org.apache.commons.io.FileUtils.forceMkdir(parentDir);
+            }
+        } catch (Exception e) {
+            LOGGER.error("create file failure", e);
+            throw new RuntimeException(e);
+        }
+        return file;
+    }
 
     /**
      * 下载文件

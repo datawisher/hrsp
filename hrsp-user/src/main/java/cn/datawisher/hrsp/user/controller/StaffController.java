@@ -24,18 +24,33 @@ public class StaffController {
 
     private final StaffService staffService;
 
+    /**
+     * 按id查询
+     * @param id
+     * @return
+     */
     @GetMapping("{id}")
     public Staff findById(@PathVariable(name = "id") Long id) {
         return staffService.findById(id);
     }
 
+    /**
+     * 查询全部
+     * @return
+     */
     @GetMapping
     public List<Staff> findAll() {
         return staffService.findAll();
     }
 
-    @GetMapping(params = {"page", "size"}) // params要加，不然会和findAll的url mapping冲突
-    public PageResult findByPage(@RequestParam Integer page, @RequestParam Integer size) {
+    /**
+     * 分页查询。params必须要加，不然会和findAll的url mapping冲突
+     * @param page
+     * @param size
+     * @return
+     */
+    @GetMapping(params = {"page", "size"})
+    public PageResult findByPage(@RequestParam final Integer page, @RequestParam final Integer size) {
         PageRequest pageRequest = new PageRequest(page, size);
         return staffService.findByPage(pageRequest);
     }

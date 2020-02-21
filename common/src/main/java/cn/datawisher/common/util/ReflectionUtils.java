@@ -1,5 +1,9 @@
 package cn.datawisher.common.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -11,6 +15,44 @@ import java.lang.reflect.Method;
  * @Version V1.0
  **/
 public class ReflectionUtils {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReflectionUtils.class);
+
+    /**
+     * 创建实例
+     */
+    public static Object newInstance(Class<?> cls) {
+        Object instance;
+        try {
+            instance = cls.newInstance();
+        } catch (Exception e) {
+            LOGGER.error("new instance failure", e);
+            throw new RuntimeException(e);
+        }
+        return instance;
+    }
+
+    /**
+     * 创建实例（根据类名）
+     */
+    public static Object newInstance(String className) {
+        Class<?> cls = ClassUtils.loadClass(className);
+        return newInstance(cls);
+    }
+
+
+    /**
+     * 设置成员变量的值
+     */
+    public static void setField(Object obj, Field field, Object value) {
+        try {
+            field.setAccessible(true);
+            field.set(obj, value);
+        } catch (Exception e) {
+            LOGGER.error("set field failure", e);
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * 根据方法名调用指定对象的方法
