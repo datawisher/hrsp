@@ -19,23 +19,24 @@ import java.util.List;
  **/
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-@RequestMapping("/staff")
+@RequestMapping("/v1/staffs")
 public class StaffController {
 
     private final StaffService staffService;
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public Staff findById(@PathVariable(name = "id") Long id) {
         return staffService.findById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public List<Staff> findAll() {
         return staffService.findAll();
     }
 
-    @PostMapping("/page")
-    public PageResult findByPage(@RequestBody PageRequest pageRequest) {
+    @GetMapping(params = {"page", "size"}) // params要加，不然会和findAll的url mapping冲突
+    public PageResult findByPage(@RequestParam Integer page, @RequestParam Integer size) {
+        PageRequest pageRequest = new PageRequest(page, size);
         return staffService.findByPage(pageRequest);
     }
 

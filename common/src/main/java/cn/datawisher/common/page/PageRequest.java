@@ -27,6 +27,11 @@ public class PageRequest {
      */
     private Map<String, Object> params = new HashMap<>();
 
+    public PageRequest(int pageNum, int pageSize) {
+        this.pageNum = pageNum;
+        this.pageSize = pageSize;
+    }
+
     public int getPageNum() {
         return pageNum;
     }
