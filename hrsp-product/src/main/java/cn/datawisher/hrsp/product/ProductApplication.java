@@ -11,7 +11,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  * @Date 2020/2/18
  * @Version V1.0
  **/
-@MapperScan("cn.datawisher")
+@MapperScan("cn.datawisher.hrsp.product.dao")
 @SpringBootApplication
 public class ProductApplication {
 
