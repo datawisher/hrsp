@@ -4,7 +4,7 @@
 
 整个系统定位成SaaS平台，它是为人力资源供应商提供人事外包，派遣和代理形式的线上服务平台。可以为企业职工提供缴交社保公积金，交税，薪资计算发放和商保等服务。
 
-HRSP采用微服务方式开发，开发技术栈是Spring Boot， Spring Cloud， Docker 和 Kubernetes。
+HRSP采用微服务方式开发，接口开发使用REST API 风格。 开发技术栈是Spring Boot， Spring Cloud， Docker 和 Kubernetes。
 
 # 技术方案初期架构图
 
@@ -48,7 +48,7 @@ RBAC
 
 ## order 订单中心
 
-**使用框架：** Mybatis-Plus
+**使用框架：** Spring Data JPA
 
 **数据库：** hrsp_order
 
