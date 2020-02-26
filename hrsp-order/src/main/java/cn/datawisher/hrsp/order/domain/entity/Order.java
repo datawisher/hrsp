@@ -2,9 +2,11 @@ package cn.datawisher.hrsp.order.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,7 +18,7 @@ import java.util.Date;
  * @Version V1.0
  **/
 @Data
-@Entity(name = "`order`")
+@Entity(name = "orders")
 public class Order implements Serializable {
 
     private static final long serialVersionUID = -3321199319770589279L;

@@ -1,5 +1,7 @@
 package cn.datawisher.hrsp.order.controller;
 
+import cn.datawisher.common.logger.LogCut;
+import cn.datawisher.hrsp.order.domain.dto.StaffDTO;
 import cn.datawisher.hrsp.order.domain.entity.Order;
 import cn.datawisher.hrsp.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    @LogCut
     @GetMapping("{id}")
     public Order findById(@PathVariable(name = "id") Integer id) {
         return orderService.findById(id);
@@ -54,5 +57,10 @@ public class OrderController {
     @DeleteMapping
     public void remove(@RequestBody Order order) {
         orderService.removeOrder(order);
+    }
+
+    @GetMapping("/staff/{id}")
+    public StaffDTO findStaffByOrderId(@PathVariable final Integer id) {
+        return orderService.findStaffByOrderId(id);
     }
 }

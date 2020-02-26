@@ -12,7 +12,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  * @Version V1.0
  **/
 @MapperScan("cn.datawisher.hrsp.product.dao")
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"cn.datawisher.hrsp", "cn.datawisher.common.logger"})
 public class ProductApplication {
 
     public static void main(String[] args) {

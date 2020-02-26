@@ -3,6 +3,7 @@ package cn.datawisher.hrsp.product.domain.entity;
 import java.util.Date;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 @Data
@@ -41,6 +42,7 @@ public class Product {
     /**
      * 创建日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     @Column(name = "create_date")
     private Date createDate;
 
@@ -53,6 +55,7 @@ public class Product {
     /**
      * 更新日期
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     @Column(name = "update_date")
     private Date updateDate;
 

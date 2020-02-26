@@ -1,7 +1,9 @@
 package cn.datawisher.hrsp.order;
 
+import cn.datawisher.hrsp.order.configuration.GlobalFeignConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @ClassName OrderApplication
@@ -10,7 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date 2020/2/23
  * @Version V1.0
  **/
-@SpringBootApplication
+@EnableFeignClients(defaultConfiguration = GlobalFeignConfiguration.class)
+@SpringBootApplication(scanBasePackages = {"cn.datawisher.hrsp", "cn.datawisher.common.logger"})
 public class OrderApplication {
 
     public static void main(String[] args) {

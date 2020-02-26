@@ -41,8 +41,8 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public Staff findById(Long id) {
-        return staffMapper.selectByPrimaryKey(id.intValue());
+    public Staff findById(Integer id) {
+        return staffMapper.selectByPrimaryKey(id);
     }
 
     @Override

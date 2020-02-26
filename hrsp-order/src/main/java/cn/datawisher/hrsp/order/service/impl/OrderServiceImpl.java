@@ -1,5 +1,7 @@
 package cn.datawisher.hrsp.order.service.impl;
 
+import cn.datawisher.hrsp.order.client.UserFeignClient;
+import cn.datawisher.hrsp.order.domain.dto.StaffDTO;
 import cn.datawisher.hrsp.order.domain.entity.Order;
 import cn.datawisher.hrsp.order.repository.OrderRepository;
 import cn.datawisher.hrsp.order.service.OrderService;
@@ -25,10 +27,12 @@ import java.util.UUID;
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
+    private final UserFeignClient userFeignClient;
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository) {
+    public OrderServiceImpl(OrderRepository orderRepository, UserFeignClient userFeignClient) {
         this.orderRepository = orderRepository;
+        this.userFeignClient = userFeignClient;
     }
 
     @Override
@@ -43,7 +47,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Page<Order> findByPage(Integer page, Integer size) {
-        return orderRepository.findAll(PageRequest.of(page, size));
+        return orderRepository.findAll(PageRequest.of(page - 1, size));
     }
 
     @Override
@@ -67,6 +71,11 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     public void removeOrder(Order order) {
         orderRepository.delete(order);
+    }
+
+    @Override
+    public StaffDTO findStaffByOrderId(Integer id) {
+        return this.userFeignClient.findStaffById(id);
     }
 
 }

@@ -1,5 +1,6 @@
 package cn.datawisher.hrsp.user.controller;
 
+import cn.datawisher.common.logger.LogCut;
 import cn.datawisher.common.page.PageRequest;
 import cn.datawisher.common.page.PageResult;
 import cn.datawisher.hrsp.user.domain.entity.Staff;
@@ -29,8 +30,9 @@ public class StaffController {
      * @param id
      * @return
      */
+    @LogCut
     @GetMapping("{id}")
-    public Staff findById(@PathVariable(name = "id") Long id) {
+    public Staff findById(@PathVariable(name = "id") Integer id) {
         return staffService.findById(id);
     }
 

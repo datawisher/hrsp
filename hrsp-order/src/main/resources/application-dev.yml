@@ -2,6 +2,8 @@ server:
   port: 9082
 
 spring:
+  application:
+    name: order
   datasource:
     url: jdbc:mysql://192.168.32.102:3306/hrsp_order?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
     hikari:
@@ -10,6 +12,31 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
-
   jackson:
     time-zone: GMT+8
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.32.102:8848
+
+logging:
+  level:
+    cn.datawisher.hrsp.order.client.UserFeignClient: debug
+
+#细粒度配置
+#feign:
+#  client:
+#    config:
+#      user: # 微服务名称
+#        loggerLevel: full
+
+#feign全局配置
+feign:
+  httpclient:
+    enabled: true
+    max-connections: 200
+    max-connections-per-route: 50
+  client:
+    config:
+      default:
+        loggerLevel: full

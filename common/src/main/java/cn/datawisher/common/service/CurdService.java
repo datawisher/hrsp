@@ -40,7 +40,7 @@ public interface CurdService<T> {
      * @param id
      * @return
      */
-    T findById(Long id);
+    T findById(Integer id);
 
     /**
      * 分页查询

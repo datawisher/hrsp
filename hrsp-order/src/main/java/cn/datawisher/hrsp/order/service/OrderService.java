@@ -1,5 +1,6 @@
 package cn.datawisher.hrsp.order.service;
 
+import cn.datawisher.hrsp.order.domain.dto.StaffDTO;
 import cn.datawisher.hrsp.order.domain.entity.Order;
 import org.springframework.data.domain.Page;
 
@@ -25,4 +26,11 @@ public interface OrderService {
     Order saveOrder(Order order);
 
     void removeOrder(Order order);
+
+    /**
+     * 订单Id查询员工数据
+     * @param id
+     * @return
+     */
+    StaffDTO findStaffByOrderId(Integer id);
 }

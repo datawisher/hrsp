@@ -1,5 +1,6 @@
 package cn.datawisher.hrsp.product.controller;
 
+import cn.datawisher.common.logger.LogCut;
 import cn.datawisher.common.page.PageRequest;
 import cn.datawisher.common.page.PageResult;
 import cn.datawisher.hrsp.product.domain.entity.Product;
@@ -28,6 +29,7 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @LogCut
     @GetMapping("{id}")
     public Product findById(@PathVariable(name = "id") Integer id) {
         return productService.findById(id);
