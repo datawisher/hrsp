@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,17 +27,29 @@ public class StaffServiceImpl implements StaffService {
     private final StaffMapper staffMapper;
 
     @Override
-    public int save(Staff staff) {
+    public int add(Staff staff) {
+        staff.setCreateDate(new Date());
         return staffMapper.insertSelective(staff);
     }
 
     @Override
+    public int save(Staff staff) {
+        staff.setUpdateDate(new Date());
+        return staffMapper.updateByPrimaryKeySelective(staff);
+    }
+
+    @Override
     public int delete(Staff staff) {
+        Integer id = staff.getId();
+        if (id != null) {
+            return staffMapper.deleteByPrimaryKey(id);
+        }
         return 0;
     }
 
     @Override
     public int delete(List<Staff> staffs) {
+        // TODO: 2020/3/2
         return 0;
     }
 

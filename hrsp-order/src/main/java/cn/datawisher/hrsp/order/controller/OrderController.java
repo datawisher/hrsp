@@ -34,31 +34,37 @@ public class OrderController {
         return orderService.findById(id);
     }
 
+    @LogCut
     @GetMapping
     public List<Order> findAll() {
         return orderService.findAll();
     }
 
+    @LogCut
     @GetMapping(params = {"page", "size"})
     public Page<Order> findByPage(@RequestParam final Integer page, @RequestParam final Integer size) {
         return orderService.findByPage(page, size);
     }
 
+    @LogCut
     @PostMapping
     public Order addOrder(@RequestBody Order order) {
         return orderService.addOrder(order);
     }
 
+    @LogCut
     @PutMapping
     public Order saveOrder(@RequestBody Order order) {
         return orderService.saveOrder(order);
     }
 
+    @LogCut
     @DeleteMapping
     public void remove(@RequestBody Order order) {
         orderService.removeOrder(order);
     }
 
+    @LogCut
     @GetMapping("/staff/{id}")
     public StaffDTO findStaffByOrderId(@PathVariable final Integer id) {
         return orderService.findStaffByOrderId(id);

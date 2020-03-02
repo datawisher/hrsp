@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,6 +41,7 @@ public class StaffController {
      * 查询全部
      * @return
      */
+    @LogCut
     @GetMapping
     public List<Staff> findAll() {
         return staffService.findAll();
@@ -51,10 +53,43 @@ public class StaffController {
      * @param size
      * @return
      */
+    @LogCut
     @GetMapping(params = {"page", "size"})
     public PageResult findByPage(@RequestParam final Integer page, @RequestParam final Integer size) {
         PageRequest pageRequest = new PageRequest(page, size);
         return staffService.findByPage(pageRequest);
     }
 
+    /**
+     * 新增员工信息
+     * @param staff
+     * @return
+     */
+    @LogCut
+    @PostMapping
+    public int addStaff(@RequestBody Staff staff) {
+        return staffService.add(staff);
+    }
+
+    /**
+     * 修改员工信息
+     * @param staff
+     * @return
+     */
+    @LogCut
+    @PutMapping
+    public int saveStaff(@RequestBody Staff staff) {
+        return staffService.save(staff);
+    }
+
+    /**
+     * 删除员工信息
+     * @param staff
+     * @return
+     */
+    @LogCut
+    @DeleteMapping
+    public int deleteStaff(@RequestBody Staff staff) {
+        return staffService.delete(staff);
+    }
 }

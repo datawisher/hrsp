@@ -15,6 +15,13 @@ import java.util.List;
 public interface CurdService<T> {
 
     /**
+     * 新增操作
+     * @param record
+     * @return
+     */
+    int add(T record);
+
+    /**
      * 保存操作
      * @param record
      * @return
@@ -41,6 +48,12 @@ public interface CurdService<T> {
      * @return
      */
     T findById(Integer id);
+
+    /**
+     * 查找所有记录
+     * @return
+     */
+    List<T> findAll();
 
     /**
      * 分页查询
