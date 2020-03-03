@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Version V1.0
  **/
 @MapperScan("cn.datawisher.hrsp.user.dao") // 扫mapper接口，不能扫到sevice层，否则会报错
-@SpringBootApplication(scanBasePackages = {"cn.datawisher.hrsp", "cn.datawisher.common.logger"})
+@SpringBootApplication(scanBasePackages = {"cn.datawisher.hrsp", "cn.datawisher.common"})
 public class UserApplication {
 
     public static void main(String[] args) {

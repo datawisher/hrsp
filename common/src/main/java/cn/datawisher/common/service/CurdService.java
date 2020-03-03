@@ -22,11 +22,11 @@ public interface CurdService<T> {
     int add(T record);
 
     /**
-     * 保存操作
+     * 修改操作
      * @param record
      * @return
      */
-    int save(T record);
+    int edit(T record);
 
     /**
      * 删除操作

@@ -33,7 +33,7 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public int save(Staff staff) {
+    public int edit(Staff staff) {
         staff.setUpdateDate(new Date());
         return staffMapper.updateByPrimaryKeySelective(staff);
     }

@@ -1,5 +1,6 @@
 package cn.datawisher.hrsp.order.controller;
 
+import cn.datawisher.common.http.HttpResult;
 import cn.datawisher.common.logger.LogCut;
 import cn.datawisher.hrsp.order.domain.dto.StaffDTO;
 import cn.datawisher.hrsp.order.domain.entity.Order;
@@ -30,43 +31,50 @@ public class OrderController {
 
     @LogCut
     @GetMapping("{id}")
-    public Order findById(@PathVariable(name = "id") Integer id) {
-        return orderService.findById(id);
+    public HttpResult findById(@PathVariable(name = "id") Integer id) {
+        Order order = orderService.findById(id);
+        return HttpResult.ok(order);
     }
 
     @LogCut
     @GetMapping
-    public List<Order> findAll() {
-        return orderService.findAll();
+    public HttpResult findAll() {
+        List<Order> orders = orderService.findAll();
+        return HttpResult.ok(orders);
     }
 
     @LogCut
     @GetMapping(params = {"page", "size"})
-    public Page<Order> findByPage(@RequestParam final Integer page, @RequestParam final Integer size) {
-        return orderService.findByPage(page, size);
+    public HttpResult findByPage(@RequestParam final Integer page, @RequestParam final Integer size) {
+        Page<Order> orders = orderService.findByPage(page, size);
+        return HttpResult.ok(orders);
     }
 
     @LogCut
     @PostMapping
-    public Order addOrder(@RequestBody Order order) {
-        return orderService.addOrder(order);
+    public HttpResult addOrder(@RequestBody Order order) {
+        Order newOrder = orderService.addOrder(order);
+        return HttpResult.ok(newOrder);
     }
 
     @LogCut
     @PutMapping
-    public Order saveOrder(@RequestBody Order order) {
-        return orderService.saveOrder(order);
+    public HttpResult editOrder(@RequestBody Order order) {
+        Order newOrder = orderService.editOrder(order);
+        return HttpResult.ok(newOrder);
     }
 
     @LogCut
     @DeleteMapping
-    public void remove(@RequestBody Order order) {
+    public HttpResult remove(@RequestBody Order order) {
         orderService.removeOrder(order);
+        return HttpResult.ok();
     }
 
     @LogCut
     @GetMapping("/staff/{id}")
-    public StaffDTO findStaffByOrderId(@PathVariable final Integer id) {
-        return orderService.findStaffByOrderId(id);
+    public HttpResult findStaffByOrderId(@PathVariable final Integer id) {
+        StaffDTO staffDTO = orderService.findStaffByOrderId(id);
+        return HttpResult.ok(staffDTO);
     }
 }

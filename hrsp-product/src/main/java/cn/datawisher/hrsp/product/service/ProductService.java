@@ -47,7 +47,7 @@ public interface ProductService {
      * @param product
      * @return
      */
-    int saveProduct(Product product);
+    int editProduct(Product product);
 
     /**
      * 删除产品

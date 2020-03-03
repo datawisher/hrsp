@@ -1,5 +1,6 @@
 package cn.datawisher.hrsp.product.controller;
 
+import cn.datawisher.common.http.HttpResult;
 import cn.datawisher.common.logger.LogCut;
 import cn.datawisher.common.page.PageRequest;
 import cn.datawisher.common.page.PageResult;
@@ -31,40 +32,46 @@ public class ProductController {
 
     @LogCut
     @GetMapping("{id}")
-    public Product findById(@PathVariable(name = "id") Integer id) {
-        return productService.findById(id);
+    public HttpResult findById(@PathVariable(name = "id") Integer id) {
+        Product product = productService.findById(id);
+        return HttpResult.ok(product);
     }
 
     @LogCut
     @GetMapping
-    public List<Product> findAll() {
-        return productService.findAll();
+    public HttpResult findAll() {
+        List<Product> products = productService.findAll();
+        return HttpResult.ok(products);
     }
 
     @LogCut
     @GetMapping(params = {"page", "size"})
-    public PageResult findByPage(@RequestParam final Integer page, @RequestParam final Integer size) {
+    public HttpResult findByPage(@RequestParam final Integer page, @RequestParam final Integer size) {
         PageRequest pageRequest = new PageRequest(page, size);
-        return productService.findByPage(pageRequest);
+        PageResult result = productService.findByPage(pageRequest);
+        return HttpResult.ok(result);
     }
 
     @LogCut
     @PostMapping
-    public int addProduct(@RequestBody Product product) {
+    public HttpResult addProduct(@RequestBody Product product) {
         product.setCreateDate(new Date());
-        return productService.addProduct(product);
+        productService.addProduct(product);
+        return HttpResult.ok();
     }
 
     @LogCut
     @PutMapping
-    public int saveProduct(@RequestBody Product product) {
+    public HttpResult editProduct(@RequestBody Product product) {
         product.setUpdateDate(new Date());
-        return productService.saveProduct(product);
+        productService.editProduct(product);
+        return HttpResult.ok();
     }
 
     @LogCut
     @DeleteMapping
-    public int removeProductByPK(@RequestBody Product product) {
-        return productService.removeProductByPK(product);
+    public HttpResult removeProductByPK(@RequestBody Product product) {
+        productService.removeProductByPK(product);
+        return HttpResult.ok();
     }
 }

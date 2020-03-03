@@ -1,6 +1,6 @@
 package cn.datawisher.common.http;
 
-import org.springframework.http.HttpStatus;
+import cn.datawisher.common.ResultCode;
 
 /**
  * @ClassName HttpResult
@@ -11,39 +11,35 @@ import org.springframework.http.HttpStatus;
  **/
 public class HttpResult {
 
-    private int code = HttpStatus.OK.value();
+    private int code;
     private String msg;
     private Object data;
 
+    public HttpResult(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public HttpResult(int code, String msg, Object data) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+    }
+
     public static HttpResult error() {
-        return error(HttpStatus.INTERNAL_SERVER_ERROR.value(), "未知异常，请联系管理员");
+        return new HttpResult(ResultCode.SERVER_ERROR.getCode(), ResultCode.SERVER_ERROR.getMsg());
     }
 
-    public static HttpResult error(String msg) {
-        return error(HttpStatus.INTERNAL_SERVER_ERROR.value(), msg);
-    }
-
-    public static HttpResult error(int code, String msg) {
-        HttpResult r = new HttpResult();
-        r.setCode(code);
-        r.setMsg(msg);
-        return r;
-    }
-
-    public static HttpResult ok(String msg) {
-        HttpResult r = new HttpResult();
-        r.setMsg(msg);
-        return r;
-    }
-
-    public static HttpResult ok(Object data) {
-        HttpResult r = new HttpResult();
-        r.setData(data);
-        return r;
+    public static HttpResult error(ResultCode resultCode) {
+        return new HttpResult(resultCode.getCode(), resultCode.getMsg());
     }
 
     public static HttpResult ok() {
-        return new HttpResult();
+        return new HttpResult(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMsg());
+    }
+
+    public static HttpResult ok(Object data) {
+        return new HttpResult(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMsg(), data);
     }
 
     public int getCode() {

@@ -13,7 +13,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @Version V1.0
  **/
 @EnableFeignClients(defaultConfiguration = GlobalFeignConfiguration.class)
-@SpringBootApplication(scanBasePackages = {"cn.datawisher.hrsp", "cn.datawisher.common.logger"})
+@SpringBootApplication(scanBasePackages = {"cn.datawisher.hrsp", "cn.datawisher.common"})
 public class OrderApplication {
 
     public static void main(String[] args) {

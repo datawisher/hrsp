@@ -1,5 +1,6 @@
 package cn.datawisher.hrsp.user.controller;
 
+import cn.datawisher.common.http.HttpResult;
 import cn.datawisher.common.logger.LogCut;
 import cn.datawisher.common.page.PageRequest;
 import cn.datawisher.common.page.PageResult;
@@ -9,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,8 +33,9 @@ public class StaffController {
      */
     @LogCut
     @GetMapping("{id}")
-    public Staff findById(@PathVariable(name = "id") Integer id) {
-        return staffService.findById(id);
+    public HttpResult findById(@PathVariable(name = "id") Integer id) {
+        Staff staff = staffService.findById(id);
+        return HttpResult.ok(staff);
     }
 
     /**
@@ -43,8 +44,9 @@ public class StaffController {
      */
     @LogCut
     @GetMapping
-    public List<Staff> findAll() {
-        return staffService.findAll();
+    public HttpResult findAll() {
+        List<Staff> staffs = staffService.findAll();
+        return HttpResult.ok(staffs);
     }
 
     /**
@@ -55,9 +57,10 @@ public class StaffController {
      */
     @LogCut
     @GetMapping(params = {"page", "size"})
-    public PageResult findByPage(@RequestParam final Integer page, @RequestParam final Integer size) {
+    public HttpResult findByPage(@RequestParam final Integer page, @RequestParam final Integer size) {
         PageRequest pageRequest = new PageRequest(page, size);
-        return staffService.findByPage(pageRequest);
+        PageResult result = staffService.findByPage(pageRequest);
+        return HttpResult.ok(result);
     }
 
     /**
@@ -67,8 +70,9 @@ public class StaffController {
      */
     @LogCut
     @PostMapping
-    public int addStaff(@RequestBody Staff staff) {
-        return staffService.add(staff);
+    public HttpResult addStaff(@RequestBody Staff staff) {
+        staffService.add(staff);
+        return HttpResult.ok();
     }
 
     /**
@@ -78,8 +82,9 @@ public class StaffController {
      */
     @LogCut
     @PutMapping
-    public int saveStaff(@RequestBody Staff staff) {
-        return staffService.save(staff);
+    public HttpResult eidtStaff(@RequestBody Staff staff) {
+        staffService.edit(staff);
+        return HttpResult.ok();
     }
 
     /**
@@ -89,7 +94,8 @@ public class StaffController {
      */
     @LogCut
     @DeleteMapping
-    public int deleteStaff(@RequestBody Staff staff) {
-        return staffService.delete(staff);
+    public HttpResult deleteStaff(@RequestBody Staff staff) {
+        staffService.delete(staff);
+        return HttpResult.ok();
     }
 }

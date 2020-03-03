@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public int saveProduct(Product product) {
+    public int editProduct(Product product) {
         return productMapper.updateByPrimaryKeySelective(product);
     }
 

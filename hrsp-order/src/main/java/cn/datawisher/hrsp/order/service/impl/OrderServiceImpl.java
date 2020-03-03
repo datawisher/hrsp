@@ -60,7 +60,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public Order saveOrder(Order order) {
+    public Order editOrder(Order order) {
         Order oldOrder = orderRepository.findById(order.getId()).orElse(order);
         oldOrder.setUpdateDate(new Date());
         oldOrder.setStaffCode(order.getStaffCode());

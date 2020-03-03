@@ -23,7 +23,7 @@ public interface OrderService {
 
     Order addOrder(Order order);
 
-    Order saveOrder(Order order);
+    Order editOrder(Order order);
 
     void removeOrder(Order order);
 
