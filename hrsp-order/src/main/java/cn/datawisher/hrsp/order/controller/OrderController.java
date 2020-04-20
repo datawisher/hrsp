@@ -1,5 +1,6 @@
 package cn.datawisher.hrsp.order.controller;
 
+import cn.datawisher.common.ResultCode;
 import cn.datawisher.common.http.HttpResult;
 import cn.datawisher.common.logger.LogCut;
 import cn.datawisher.hrsp.order.domain.dto.StaffDTO;
@@ -74,7 +75,12 @@ public class OrderController {
     @LogCut
     @GetMapping("/staff/{id}")
     public HttpResult findStaffByOrderId(@PathVariable final Integer id) {
-        StaffDTO staffDTO = orderService.findStaffByOrderId(id);
+        StaffDTO staffDTO = null;
+        try {
+            staffDTO = orderService.findStaffByOrderId(id);
+        } catch (Exception e) {
+            return new HttpResult(500, e.getMessage());
+        }
         return HttpResult.ok(staffDTO);
     }
 }

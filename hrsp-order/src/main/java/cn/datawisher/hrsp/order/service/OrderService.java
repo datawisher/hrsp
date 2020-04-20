@@ -32,5 +32,5 @@ public interface OrderService {
      * @param id
      * @return
      */
-    StaffDTO findStaffByOrderId(Integer id);
+    StaffDTO findStaffByOrderId(Integer id) throws Exception;
 }

@@ -1,10 +1,13 @@
 package cn.datawisher.hrsp.order.service.impl;
 
+import cn.datawisher.common.http.HttpResult;
+import cn.datawisher.common.util.ConvertUtils;
 import cn.datawisher.hrsp.order.client.UserFeignClient;
 import cn.datawisher.hrsp.order.domain.dto.StaffDTO;
 import cn.datawisher.hrsp.order.domain.entity.Order;
 import cn.datawisher.hrsp.order.repository.OrderRepository;
 import cn.datawisher.hrsp.order.service.OrderService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -74,8 +78,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public StaffDTO findStaffByOrderId(Integer id) {
-        return this.userFeignClient.findStaffById(id);
+    public StaffDTO findStaffByOrderId(Integer id) throws Exception {
+        HttpResult result = this.userFeignClient.findStaffById(id);
+        Object data = result.getData();
+        Object object = ConvertUtils.mapToObject((Map<String, Object>) data, StaffDTO.class);
+        return (StaffDTO) object;
     }
 
 }

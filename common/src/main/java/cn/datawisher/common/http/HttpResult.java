@@ -2,6 +2,8 @@ package cn.datawisher.common.http;
 
 import cn.datawisher.common.ResultCode;
 
+import java.io.Serializable;
+
 /**
  * @ClassName HttpResult
  * @Description HTTP结果封装
@@ -9,11 +11,14 @@ import cn.datawisher.common.ResultCode;
  * @Date 2020/2/20
  * @Version V1.0
  **/
-public class HttpResult {
+public class HttpResult implements Serializable {
 
+    private static final long serialVersionUID = 7542717818322823340L;
     private int code;
     private String msg;
     private Object data;
+
+    public HttpResult(){}
 
     public HttpResult(int code, String msg) {
         this.code = code;

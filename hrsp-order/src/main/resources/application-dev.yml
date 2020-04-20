@@ -5,10 +5,10 @@ spring:
   application:
     name: order
   datasource:
-    url: jdbc:mysql://192.168.32.102:3306/hrsp_order?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://127.0.0.1:3306/hrsp_order?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
     hikari:
       username: root
-      password: 123456
+      password: root
       driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
@@ -17,10 +17,10 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 192.168.32.102:8848
+        server-addr: 127.0.0.1:8848
     sentinel:
       transport:
-        dashboard: 192.168.32.102:8080
+        dashboard: 127.0.0.1:8080
 
 logging:
   level:
